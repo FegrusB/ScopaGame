@@ -19,4 +19,8 @@ public class Card {
         this.suit = suitInit;
 
     }
+    @Override
+    public String toString(){
+        return num +","+ suit;
+    }
 }

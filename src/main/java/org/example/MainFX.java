@@ -24,17 +24,14 @@ public class MainFX extends Application {
         StackPane layout = new StackPane();
         layout.getChildren().add(newGame);
 
-        Scene scene = new Scene(layout,300,250);
+        Scene scene = new Scene(layout,1500,1250);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
 
     public static void startNewGame(){
-
-        Deck deck = new Deck();
-        System.out.println("Test");
-
+        GameManager gameManager = new GameManager(2);
     }
 
 }

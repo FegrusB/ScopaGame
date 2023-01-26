@@ -9,9 +9,10 @@ public class Deck {
     public Deck(){
 
         deck = new ArrayList<Card>();
-        setUp(deck);
+        setUp();
+        printCards();
     }
-    public void setUp(ArrayList<Card> deck){
+    public void setUp(){
 
         int count = 0;
 
@@ -20,9 +21,9 @@ public class Deck {
                 deck.add(new Card(n,s));
             }
         }
-        shuffle(deck);
+        shuffle();
     }
-    public void shuffle(ArrayList<Card> deck){
+    public void shuffle(){
 
         Random rand = new Random();
 
@@ -33,6 +34,22 @@ public class Deck {
             Card temp = deck.get(r);
             deck.set( r ,deck.get(i));
             deck.set(i,temp);
+        }
+    }
+    public ArrayList<Card> dealCards(int num){
+
+        ArrayList<Card> out = new ArrayList<>();
+
+        for(int i = 0; i<num;i++){
+            if (deck.isEmpty()){break;}
+            out.add(deck.get(0));
+            deck.remove(0);
+        }
+        return out;
+    }
+    public void printCards(){
+        for (Card card: deck) {
+            System.out.println(card.toString());
         }
     }
 
