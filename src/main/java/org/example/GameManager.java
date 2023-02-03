@@ -1,18 +1,57 @@
 package org.example;
 
-import java.util.ArrayList;
+import static java.lang.Math.abs;
 
 public class GameManager {
 
-    private Deck deck;
-    private ArrayList<Player> players;
-    private ArrayList<Card> cardsInPlay;
+    int[] scores;
+    int playNum;
     public GameManager(int playNum){
 
-        deck = new Deck();
-        cardsInPlay = new ArrayList<>(deck.dealCards(4));
-        players = new ArrayList<>();
-        for(int i = 0;i<playNum;i++){players.add(new Player(deck.dealCards(3)));}
+        this.playNum = playNum;
+        scores = new int[2];
+
+    }
+
+    public void play(){
+
+        boolean[] checkScores = new boolean[2];
+
+        while(!checkScores[0]){
+            Round round = new Round(playNum);
+            int[] scoresDiff = round.play() ;
+            scores[0] = scoresDiff[0];
+            scores[1] = scoresDiff[1];
+            checkScores = checkScores();
+        }
+
+    }
+
+    private boolean[] checkScores(){
+        //check scores for a won game. booleans[0] = game won/not-won. booleans[1] = player 1/2 win.
+
+        boolean[] booleans = new boolean[2];
+
+        int dif = scores[0] - scores[1];
+
+        //if both scores are 11+ one must be more than two ahead to win.
+        if( (scores[0] > 11 && scores[1] > 11) && abs(dif) > 2 ){
+
+            booleans[0] = true;
+            if(dif < 0){booleans[1] = true;}
+
+        } else if(scores[0] > 11){
+
+            booleans[0] = true;
+
+        } else if (scores[1] > 11) {
+
+            booleans[0] = true;
+            booleans[1] = true;
+
+        }
+
+        return booleans;
 
     }
 
