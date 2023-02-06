@@ -52,6 +52,7 @@ public class Deck {
             System.out.println(card.toString());
         }
     }
+    public void removeCard(Card cardIn){deck.remove(cardIn);}
 
 
 }

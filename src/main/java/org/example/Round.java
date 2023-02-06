@@ -8,20 +8,28 @@ public class Round {
     private ArrayList<Player> players;
     private ArrayList<Card> cardsInPlay;
 
-    public Round(int playNum){
+    public Round(ArrayList<Player> playersIn){
 
         deck = new Deck();
         cardsInPlay = new ArrayList<>(deck.dealCards(4));
-        players = new ArrayList<>();
-        for(int i = 0;i<playNum;i++){players.add(new Player(deck.dealCards(3)));}
+        this.players = playersIn;
+        dealToPlayers();
 
     }
+
+    public void dealToPlayers(){for(Player player: players){player.takeCards(deck.dealCards(3));}}
 
     public int[] play(){
 
         for (Player player: players) {
+
+
             player.makeChoice(cardsInPlay);
+
+
+
         }
+
         return null;
     }
 

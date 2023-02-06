@@ -19,6 +19,7 @@ public class Card {
         this.suit = suitInit;
 
     }
+    public int getNum(){return num;}
     @Override
     public String toString(){
         return num +","+ suit;
